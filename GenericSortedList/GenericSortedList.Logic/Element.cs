@@ -3,7 +3,8 @@
 #region Element with primary Constructor
 // SHORT
 
-public class Element<E>(E data , Element<E>? next = null)
+internal class Element<E>
+  (E data , Element<E>? next = null)
 {
   public E Data { get; set; } = data;
   public Element<E>? Next { get; set; } = next;
