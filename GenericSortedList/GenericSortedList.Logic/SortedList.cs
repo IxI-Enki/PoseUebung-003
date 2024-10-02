@@ -2,17 +2,21 @@
 
 namespace GenericSortedList.Logic;
 
-public class SortedList<T> : ISortedList<T> where T : IComparable<T>
+public class SortedList<Ele> : ISortedList<Ele> where Ele : IComparable<Ele>
 {
-  public T this[ int index ]
-  { 
-    get => throw new NotImplementedException(); 
-    set => throw new NotImplementedException(); 
+  #region FIELDS
+  private Element<Ele> _first;
+  #endregion
+
+  public Ele this[ int index ]
+  {
+    get => throw new NotImplementedException();
+    set => throw new NotImplementedException();
   }
 
   public int Count => throw new NotImplementedException();
 
-  public void Add(T item)
+  public void Add(Ele item)
   {
     throw new NotImplementedException();
   }
@@ -22,12 +26,12 @@ public class SortedList<T> : ISortedList<T> where T : IComparable<T>
     throw new NotImplementedException();
   }
 
-  public IEnumerator<T> GetEnumerator()
+  public IEnumerator<Ele> GetEnumerator()
   {
     throw new NotImplementedException();
   }
 
-  public void Remove(T item)
+  public void Remove(Ele item)
   {
     throw new NotImplementedException();
   }
