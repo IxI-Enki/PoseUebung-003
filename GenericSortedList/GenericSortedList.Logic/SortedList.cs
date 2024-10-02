@@ -70,9 +70,9 @@ public class SortedList<E> : ISortedList<E> where E : IComparable<E>
       Element? run = _first;
 
       while (HasNextElement(run) && item.CompareTo(run!.Next!.Data) > 0)
-        run = SetToNext(run);
-      
-      run.Next = new Element(item , run.Next);
+        SetToNext(ref run);
+
+      run!.Next = new Element(item , run.Next);
     }
   }
   public void Remove(E item)
@@ -84,7 +84,7 @@ public class SortedList<E> : ISortedList<E> where E : IComparable<E>
 
     if (_first!.Data.CompareTo(item) == 0)
     {
-      _first = SetToNext(_first);
+      SetToNext(ref _first);
       return;
     }
 
@@ -94,18 +94,18 @@ public class SortedList<E> : ISortedList<E> where E : IComparable<E>
     {
       if (run!.Next!.Data.CompareTo(item) == 0)
       {
-        run!.Next = SetToNext(run!.Next!);
+        run.Next = run.Next.Next;
         return;
       }
-      run = SetToNext(run);
+      SetToNext(ref run!);
     }
   }
   public void Clear() => _first = null;
 
   private bool IsEmptyList() => _first == null;
   private bool HasNextElement(Element? run) => run!.Next != null;
-  private Element SetToNext(Element? run) => run!.Next!;
-  
+  private void SetToNext(ref Element? run) => run = run!.Next!;
+
   private static void CheckForNullItem(E item)
   {
     if (item == null)
