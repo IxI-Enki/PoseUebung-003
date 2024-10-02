@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/GenericSortedList/.vs/GenericSortedList
+/GenericSortedList/GenericSortedList.Logic/obj
+/GenericSortedList/GenericSortedList.UnitTests/obj
+/GenericSortedList/GenericSortedList.UnitTests/bin/Debug/net8.0
