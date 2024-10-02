@@ -61,35 +61,26 @@ public class SortedList<E> : ISortedList<E> where E : IComparable<E>
   public void Add(E item)
   {
     CheckForNullItem(item);
-
-    if (IsEmptyList() || item.CompareTo(_first!.Data) <= 0)
-      _first = new Element(item , _first);
-
+    if (IsEmptyList() || item.CompareTo(_first!.Data) <= 0) _first = new Element(item , _first);
     else
     {
       Element? run = _first;
-
       while (HasNextElement(run) && item.CompareTo(run!.Next!.Data) > 0)
         SetToNext(ref run);
-
       run!.Next = new Element(item , run.Next);
     }
   }
+
   public void Remove(E item)
   {
     CheckForNullItem(item);
-
-    if (IsEmptyList())
-      return;
-
+    if (IsEmptyList()) return;
     if (_first!.Data.CompareTo(item) == 0)
     {
       SetToNext(ref _first);
       return;
     }
-
     Element run = _first;
-
     while (HasNextElement(run))
     {
       if (run!.Next!.Data.CompareTo(item) == 0)
@@ -103,13 +94,11 @@ public class SortedList<E> : ISortedList<E> where E : IComparable<E>
   public void Clear() => _first = null;
 
   private bool IsEmptyList() => _first == null;
-  private bool HasNextElement(Element? run) => run!.Next != null;
-  private void SetToNext(ref Element? run) => run = run!.Next!;
-
+  private static bool HasNextElement(Element? run) => run!.Next != null;
+  private static void SetToNext(ref Element? run) => run = run!.Next!;
   private static void CheckForNullItem(E item)
   {
-    if (item == null)
-      throw new ArgumentNullException("Item cant be null");
+    if (item == null) throw new ArgumentNullException("Item cant be null");
   }
   #endregion
 
